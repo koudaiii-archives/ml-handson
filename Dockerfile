@@ -10,10 +10,10 @@ RUN　cd /usr/local/pyenv/plugins/
 RUN　git clone git://github.com/yyuu/pyenv-virtualenv.git
 RUN echo 'export PYENV_ROOT="/usr/local/pyenv"' | sudo tee -a /etc/profile.d/pyenv.sh
 RUN echo 'export PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"' | sudo tee -a /etc/profile.d/pyenv.sh
-RUN ['source', '/etc/profile.d/pyenv.sh']
-RUN ['pyenv', 'install', 'miniconda3-3.8.3']
-RUN ['pyenv', 'rehash']
-RUN ['pyenv', 'global', 'miniconda3-3.8.3']
+RUN /bin/bash -c "source /etc/profile.d/pyenv.sh"
+RUN /bin/bash -c "pyenv install miniconda3-3.8.3"
+RUN /bin/bash -c "pyenv rehash"
+RUN /bin/bash -c "pyenv global miniconda3-3.8.3"
 RUN wget -qO- https://bootstrap.pypa.io/get-pip.py | python
 RUN　yes | pip install virtualenv
 RUN　conda create -n ml_env numpy scipy scikit-learn matplotlib cython ipython ipython-notebook
