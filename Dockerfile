@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
-RUN echo "server 172.17.42.1" > /etc/resolv.conf
-RUN echo "server 8.8.8.8" >> /etc/resolv.conf
+RUN echo "nameserver 172.17.42.1" > /etc/resolv.conf
+RUN echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 RUN apt-get update
 RUN apt-get install -y git gcc make openssl libssl-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl
 RUN cd /usr/local/
