@@ -10,7 +10,7 @@ RUN　cd /usr/local/pyenv/plugins/
 RUN　git clone git://github.com/yyuu/pyenv-virtualenv.git
 RUN echo 'export PYENV_ROOT="/usr/local/pyenv"' | sudo tee -a /etc/profile.d/pyenv.sh
 RUN echo 'export PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"' | sudo tee -a /etc/profile.d/pyenv.sh
-RUN sh /etc/profile.d/pyenv.sh
+CMD ['source', '/etc/profile.d/pyenv.sh']
 RUN /usr/local/pyenv/pyenv install miniconda3-3.8.3
 RUN /usr/local/pyenv/pyenv rehash
 RUN /usr/local/pyenv/pyenv global miniconda3-3.8.3
