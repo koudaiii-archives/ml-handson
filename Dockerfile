@@ -13,4 +13,4 @@ RUN rm /tmp/Miniconda3-latest-Linux-x86_64.sh
 RUN echo 'export PATH="/opt/miniconda3/bin:${PATH}"' | sudo tee -a /etc/profile.d/conda.sh
 RUN apt-get autoremove -y
 RUN apt-get clean all
-CMD source /etc/profile.d/conda.sh
+CMD . /etc/profile.d/conda.sh
