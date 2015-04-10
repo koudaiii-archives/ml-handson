@@ -6,17 +6,17 @@ RUN apt-get install -y git gcc make openssl libssl-dev libbz2-dev libreadline-de
 RUN cd /usr/local/
 RUN git clone git://github.com/yyuu/pyenv.git ./pyenv
 RUN mkdir -p ./pyenv/versions ./pyenv/shims
-RUN　cd /usr/local/pyenv/plugins/
-RUN　git clone git://github.com/yyuu/pyenv-virtualenv.git
+RUN cd /usr/local/pyenv/plugins/
+RUN git clone git://github.com/yyuu/pyenv-virtualenv.git
 RUN echo 'export PYENV_ROOT="/usr/local/pyenv"' | sudo tee -a /etc/profile.d/pyenv.sh
 RUN echo 'export PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"' | sudo tee -a /etc/profile.d/pyenv.sh
-RUN /bin/bash -c "source /etc/profile.d/pyenv.sh"
-RUN /bin/bash -c "pyenv install miniconda3-3.8.3"
-RUN /bin/bash -c "pyenv rehash"
-RUN /bin/bash -c "pyenv global miniconda3-3.8.3"
+RUN source /etc/profile.d/pyenv.sh
+RUN pyenv install miniconda3-3.8.3
+RUN pyenv rehash
+RUN pyenv global miniconda3-3.8.3
 RUN wget -qO- https://bootstrap.pypa.io/get-pip.py | python
-RUN　yes | pip install virtualenv
-RUN　conda create -n ml_env numpy scipy scikit-learn matplotlib cython ipython ipython-notebook
+RUN yes | pip install virtualenv
+RUN conda create -n ml_env numpy scipy scikit-learn matplotlib cython ipython ipython-notebook
 RUN source /usr/local/pyenv/versions/miniconda3-3.8.3/envs/ml_env/bin/activate ml_env
 RUN apt-get install -y build-essential gfortran libgfortran3 python3-dev libblas-dev libatlas-base-dev cython
 RUN apt-get autoremove -y
