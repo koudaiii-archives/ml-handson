@@ -2,21 +2,14 @@ FROM ubuntu:14.04
 RUN echo "nameserver 172.17.42.1" > /etc/resolv.conf
 RUN echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 RUN apt-get update
-RUN apt-get install -y git gcc make openssl libssl-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl
-RUN cd /usr/local/
-RUN git clone git://github.com/yyuu/pyenv.git ./pyenv
-RUN echo 'export PYENV_ROOT="/usr/local/pyenv"' | sudo tee -a /etc/profile.d/pyenv.sh
-RUN echo 'export PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"' | sudo tee -a /etc/profile.d/pyenv.sh
-RUN source /etc/profile.d/pyenv.sh
-RUN mkdir -p ./pyenv/versions ./pyenv/shims
-RUN git clone git://github.com/yyuu/pyenv-virtualenv.git /usr/local/pyenv/plugins/python-build
-RUN pyenv install miniconda3-3.8.3
-RUN pyenv rehash
-RUN pyenv global miniconda3-3.8.3
+RUN apt-get install -y python3-all-dev curl wget
+RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN wget -qO- https://bootstrap.pypa.io/get-pip.py | python
+RUN wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -P /tmp/
+RUN bash /tmp/Miniconda3-latest-Linux-x86_64.sh -b -p /opt/miniconda3
 RUN yes | pip install virtualenv
-RUN conda create -n ml_env numpy scipy scikit-learn matplotlib cython ipython ipython-notebook
-RUN source /usr/local/pyenv/versions/miniconda3-3.8.3/envs/ml_env/bin/activate ml_env
-RUN apt-get install -y build-essential gfortran libgfortran3 python3-dev libblas-dev libatlas-base-dev cython
+RUN yes | /opt/miniconda3/bin/conda create -n ml_env numpy scipy scikit-learn matplotlib cython ipython ipython-notebook
+RUN rm /tmp/Miniconda3-latest-Linux-x86_64.sh
+RUN echo 'export PATH="/opt/miniconda3/bin:${PATH}"' | sudo tee -a /etc/profile.d/conda.sh
 RUN apt-get autoremove -y
 RUN apt-get clean all
