@@ -5,11 +5,11 @@ RUN apt-get update
 RUN apt-get install -y git gcc make openssl libssl-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl
 RUN cd /usr/local/
 RUN git clone git://github.com/yyuu/pyenv.git ./pyenv
-RUN mkdir -p ./pyenv/versions ./pyenv/shims
-RUN git clone git://github.com/yyuu/pyenv-virtualenv.git /usr/local/pyenv/plugins/python-build
 RUN echo 'export PYENV_ROOT="/usr/local/pyenv"' | sudo tee -a /etc/profile.d/pyenv.sh
 RUN echo 'export PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"' | sudo tee -a /etc/profile.d/pyenv.sh
 RUN source /etc/profile.d/pyenv.sh
+RUN mkdir -p ./pyenv/versions ./pyenv/shims
+RUN git clone git://github.com/yyuu/pyenv-virtualenv.git /usr/local/pyenv/plugins/python-build
 RUN pyenv install miniconda3-3.8.3
 RUN pyenv rehash
 RUN pyenv global miniconda3-3.8.3
