@@ -9,4 +9,5 @@ sudo docker run -it bsmile/ml-handson /bin/bash
 
 # qiita手順との相違点
 
+URL: [http://qiita.com/icoxfog417/items/950b8af9100b64c0d8f9](http://qiita.com/icoxfog417/items/950b8af9100b64c0d8f9)
 * 複数Pythonバージョンを想定していない為、pyenv未インストール
