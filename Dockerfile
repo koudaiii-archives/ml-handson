@@ -10,7 +10,6 @@ RUN bash /tmp/Miniconda3-latest-Linux-x86_64.sh -b -p /opt/miniconda3
 RUN yes | pip install virtualenv
 RUN yes | /opt/miniconda3/bin/conda create -n ml_env numpy scipy scikit-learn matplotlib cython ipython ipython-notebook
 RUN rm /tmp/Miniconda3-latest-Linux-x86_64.sh
-RUN echo 'export PATH="/opt/miniconda3/bin:${PATH}"' | sudo tee -a /etc/profile.d/conda.sh
+RUN echo 'export PATH="/opt/miniconda3/bin:${PATH}"' >> /etc/profile
 RUN apt-get autoremove -y
 RUN apt-get clean all
-RUN source /etc/profile.d/conda.sh
