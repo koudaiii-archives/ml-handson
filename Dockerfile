@@ -12,6 +12,6 @@ RUN yes | /opt/miniconda3/bin/conda create -n ml_env numpy scipy scikit-learn ma
 RUN rm /tmp/Miniconda3-latest-Linux-x86_64.sh
 RUN apt-get autoremove -y
 RUN apt-get clean all
+RUN echo '# !/bin/bash' | sudo tee -a /etc/profile.d/conda.sh
 RUN echo 'export PATH="/opt/miniconda3/bin:${PATH}"' | sudo tee -a /etc/profile.d/conda.sh
 RUN chmod 750 /etc/profile.d/conda.sh
-ENTRYPOINT /etc/profile.d/conda.sh
