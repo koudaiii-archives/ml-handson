@@ -25,14 +25,15 @@ RUN yes | pip install virtualenv
 RUN yes | /opt/miniconda3/bin/conda create -n ml_env numpy scipy scikit-learn matplotlib cython ipython ipython-notebook
 RUN rm /tmp/Miniconda3-latest-Linux-x86_64.sh
 
-RUN git clone https://github.com/icoxfog417/scikit-learn-notebook.git
 
 RUN source /opt/miniconda3/envs/ml_env/bin/activate ml_env; \
     ipython profile create nbserver
 
 RUN rm ~/.ipython/profile_nbserver/ipython_notebook_config.py
 ADD ipython_notebook_config.py /root/.ipython/profile_nbserver/ipython_notebook_config.py
+ADD start.sh /root/start.sh
+RUN chmod a+x /root/start.sh
 
-EXPOSE 9999
+EXPOSE 3000
 
-CMD ["cd /root/scikit-learn-notebook;source /opt/miniconda3/envs/ml_env/bin/activate ml_env;ipython notebook --profile=nbserver"]
+CMD ["/root/start.sh"]

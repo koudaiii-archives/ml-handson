@@ -5,28 +5,37 @@ URL: [http://techcircle.connpass.com/event/13901/](http://techcircle.connpass.co
 Requiremants
 ---
 
-* Docker
-* Docker-compose
+* [Docker](http://docs.docker.com/installation/mac/)
+* [Docker-compose](http://docs.docker.com/compose/install/)
 
 Usage
 ---
 
 ```
 $ docker-compose build base
-$ docker-compose run base
+$ docker-compose up -d 
+```
+* Please access. http://{boot2docker ip}:3000/
+
+
+* Containerに入る場合
+
+```
+$ docker-compose ps
+Name            Command       State           Ports          
+------------------------------------------------------------------
+mlhandson_base_1   /root/start.sh   Up      0.0.0.0:3000->3000/tcp 
+
+$ docker exec -it mlhandson_base_1 /bin/bash
+[root@9724e3015c4e /]#
+```
+
+* Stop docker
+```
+$ docker-compose stop base
 ```
 
 ```
-         $ source /opt/miniconda3/envs/ml_env/bin/activate ml_env
- (ml_env)$ ipython profile create nbserver
- (ml_env)$ cd scikit-learn-notebook
- (ml_env)$ ipython notebook --profile=nbserver &
-```
-
-※起動後、miniconda3へのパスを通す為、下記を実行して下さい。
-
-```
-# . /etc/profile.d/conda.sh
 ```
 
 # qiita手順との相違点
