@@ -15,4 +15,3 @@ RUN apt-get clean all
 RUN echo '# !/bin/bash' | sudo tee -a /etc/profile.d/conda.sh
 RUN echo 'export PATH="/opt/miniconda3/bin:${PATH}"' | sudo tee -a /etc/profile.d/conda.sh
 RUN chmod 750 /etc/profile.d/conda.sh
-CMD . /etc/profile.d/conda.sh
