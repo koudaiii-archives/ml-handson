@@ -2,14 +2,31 @@
 
 URL: [http://techcircle.connpass.com/event/13901/](http://techcircle.connpass.com/event/13901/)
 
-# 使用法
+Requiremants
+---
+
+* Docker
+* Docker-compose
+
+Usage
+---
+
 ```
-sudo docker run -it bsmile/ml-handson /bin/bash
+$ docker-compose build base
+$ docker-compose run base
+```
+
+```
+         $ source /opt/miniconda3/envs/ml_env/bin/activate ml_env
+ (ml_env)$ ipython profile create nbserver
+ (ml_env)$ cd scikit-learn-notebook
+ (ml_env)$ ipython notebook --profile=nbserver &
 ```
 
 ※起動後、miniconda3へのパスを通す為、下記を実行して下さい。
+
 ```
-root@[コンテナID]:/# . /etc/profile.d/conda.sh
+# . /etc/profile.d/conda.sh
 ```
 
 # qiita手順との相違点
