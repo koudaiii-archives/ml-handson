@@ -1,4 +1,9 @@
 base:
+  image: koudaiii/ml-handson
+  ports:
+      - "3000:3000"
+  command: /root/start.sh
+develop:
   build: .
   ports:
       - "3000:3000"
