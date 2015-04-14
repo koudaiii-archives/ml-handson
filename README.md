@@ -48,5 +48,5 @@ develop
 ---
 
 ```
-$ docker-compose build developb
+$ docker-compose build develop
 ```
