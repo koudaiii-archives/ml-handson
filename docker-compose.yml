@@ -1,10 +1,20 @@
 base:
   image: koudaiii/ml-handson
   ports:
-      - "3000:3000"
+      - "3001:3001"
   command: /root/start.sh
-develop:
+server:
+  image: koudaiii/ml-handson
+  ports:
+      - "3000:3000"
+  command: /root/server.sh
+developbase:
+  build: .
+  ports:
+      - "3001:3001"
+  command: /root/start.sh
+developserver:
   build: .
   ports:
       - "3000:3000"
-  command: /root/start.sh
+  command: /root/server.sh

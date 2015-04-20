@@ -33,7 +33,7 @@ RUN rm ~/.ipython/profile_nbserver/ipython_notebook_config.py
 ADD ipython_notebook_config.py /root/.ipython/profile_nbserver/ipython_notebook_config.py
 ADD start.sh /root/start.sh
 RUN chmod a+x /root/start.sh
-
-EXPOSE 3000
+ADD server.sh /root/server.sh
+RUN chmod a+x /root/server.sh
 
 CMD ["/root/start.sh"]
