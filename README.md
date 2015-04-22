@@ -12,28 +12,48 @@ Requiremants
 Install
 ---
 
+* Let's git clone This Repository
+
 ```
 $ docker-compose up -d base
-$ open http://$(boot2docker ip 2>/dev/null):3000/
+$ docker-compose up -d server
 ```
 
+* base   open http://$(boot2docker ip 2>/dev/null):8888/
+* server open http://$(boot2docker ip 2>/dev/null):3000/
 
 Enter the Container
 ---
+
+* check process
 
 ```
 $ docker-compose ps
 Name            Command       State           Ports
 ------------------------------------------------------------------
-mlhandson_base_1   /root/start.sh   Up      0.0.0.0:3000->3000/tcp
+mlhandson_base_1     /root/start.sh    Up        0.0.0.0:8888->8888/tcp
+mlhandson_server_1   /root/server.sh   Up        0.0.0.0:3000->3000/tcp
+```
 
+* exec
+
+```
 $ docker exec -it mlhandson_base_1 /bin/bash
 [root@9724e3015c4e /]# source /opt/miniconda3/envs/ml_env/bin/activate ml_env
 ```
 
-* Stop docker
+```
+$ docker exec -it mlhandson_server_1 /bin/bash
+[root@9724e3015c4e /]# source /opt/miniconda3/envs/ml_env/bin/activate ml_env
+```
+* server is linking to base.
+
+Stop docker
+---
+
 ```
 $ docker-compose stop base
+$ docker-compose stop server
 ```
 
 
@@ -48,5 +68,6 @@ develop
 ---
 
 ```
-$ docker-compose build develop
+$ docker-compose build developbase
+$ docker-compose build developserver
 ```
